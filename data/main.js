@@ -1,6 +1,7 @@
 define([
     "./core",
-    "./character"
+    "./map",
+    "./character",
 ], function(world) {
     'use strict';
     
