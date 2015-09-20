@@ -1,11 +1,10 @@
 /* global $ */
 define([
-	'config'
+    'config'
 ], function(config) {
-	'use strict';
-	
-	var world = {};
-	// extend config
-	$.extend(world, config);
-	return world;
+    'use strict';
+    var world = {};
+    // extend config
+    $.extend(world, config);
+    return world;
 });
