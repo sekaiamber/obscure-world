@@ -1,11 +1,11 @@
 /* global $ */
 define([
     'core',
-    './map/init'
-], function(world, map) {
+    './timer/init'
+], function(world, Timer) {
     'use strict';
     $.extend(world, {
-        map: map
+        timer: new Timer(0)
     });
     return world;
 });
