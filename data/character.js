@@ -6,12 +6,13 @@ define([
 ], function(world, Init) {
     'use strict';
     $.extend(world, {
-        character: null,
-        MakeCharacter: function(raceName, age, level) {
+        characters: [],
+        AddCharacter: function(raceName, age, level) {
             age = age || 10;
             level = level || 1;
-            this.character = new Init(raceName, age, level);
-            this.character.location = this.map[this.character.race.birth];
+            var cha = new Init(raceName, age, level);
+            cha.location = this.map[cha.race.birth];
+            this.characters.push(cha);
         },
     });
     return world;
