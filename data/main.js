@@ -1,10 +1,8 @@
 define([
-    "./core",
-    "./map",
-    "./character",
-    "./timer"
-], function(world) {
+    'world',
+    'ui',
+    './page/all'
+], function(world, ui, page) {
     'use strict';
-    
-    return (window.world = world);
+    return ui;
 });
