@@ -7,5 +7,6 @@ define([
     $.extend(world, {
         map: map
     });
+    world.hooks['map'] = world.map;
     return world;
 });
