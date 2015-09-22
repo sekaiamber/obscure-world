@@ -31,7 +31,17 @@ define([
         onChange: function(timer) {},
         toString: function() {
             var _t = this.current;
-            var ret = '';
+            var ret = this.data.format;
+            ret = ret.replace('%Y', Math.floor(_t / 8064));
+            _t = _t % 8064;
+            ret = ret.replace('%m', Math.floor(_t / 672) + 1);
+            _t = _t % 672;
+            ret = ret.replace('%W', Math.floor(_t / 168) + 1);
+            _t = _t % 168;
+            ret = ret.replace('%d', this.data.day[Math.floor(_t / 24)]);
+            _t = _t % 24;
+            ret = ret.replace('%H', _t);
+            return ret;
         }
     };
     return Cls_timer;

@@ -1,11 +1,6 @@
 define({
     unit: 2500,
     start: 524160,
-    minute: '分',
-    hour: '时',
-    day: '天',
-    week: '周',
-    month: '月',
-    quarter: ['春', '夏', '秋', '冬'],
-    year: '年'
+    day: ['一', '二', '三', '四', '五', '六', '天'],
+    format: '%Y年 %m月 第%W周 星期%d, %H:00'
 });
