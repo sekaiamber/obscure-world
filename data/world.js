@@ -2,7 +2,8 @@ define([
     "./core",
     "./map",
     "./character",
-    "./timer"
+    "./timer",
+    "./event",
 ], function(world) {
     'use strict';
     return (window.world = world);

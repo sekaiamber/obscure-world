@@ -5,14 +5,25 @@ define([
     'map',
 ], function(world, Init) {
     'use strict';
+    var characters = [];
+    characters.moveTo = function(loc) {
+        var len = this.length;
+        var mloc = world.map[loc];
+        for (var i = 0; i < len; i++) {
+            var cha = this[i];
+            cha.location = mloc;
+        }
+        this.onMapChange(mloc);
+    };
+    characters.onMapChange = function(loc) {};
     $.extend(world, {
-        characters: [],
+        characters: characters,
         AddCharacter: function(name, raceName, age, level) {
             age = age || 10;
             level = level || 1;
             var cha = new Init(name, raceName, age, level);
-            cha.location = this.map[cha.race.birth];
             this.characters.push(cha);
+            this.characters.moveTo(cha.race.birth);
             this.onAddCharacter(cha);
         },
         onAddCharacter: function(character) {},

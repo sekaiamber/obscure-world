@@ -6,6 +6,6 @@ define(function() {
             ui.setHooksCallback('timer', 'onChange', function(timer) {
                 $('#main .timer').html(timer.toString());
             });
-        })
+        });
     });
 });
