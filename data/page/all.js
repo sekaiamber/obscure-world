@@ -1,10 +1,14 @@
 define([
     '../ui',
     './timer',
-    './character'
-], function(ui, Timer, Character) {
+    './character',
+    './map',
+    './event'
+], function(ui, Timer, Character, Map, Event) {
     'use strict';
     Timer(ui);
     Character(ui);
+    Map(ui);
+    Event(ui);
     return ui;
 });
