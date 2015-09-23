@@ -19,6 +19,7 @@ define([
     $.extend(world, {
         characters: characters,
         AddCharacter: function(name, raceName, age, level) {
+            raceName = raceName || 'human';
             age = age || 10;
             level = level || 1;
             var cha = new Init(name, raceName, age, level);
