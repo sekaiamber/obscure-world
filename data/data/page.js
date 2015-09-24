@@ -10,7 +10,7 @@ define({
         node.append("<div class='age'>" + character.age + "</div>");
         node.append("<div class='race'>" + character.race.name + "</div>");
         node.append("<div class='level'>Lv." + character.level + "</div>");
-        node.append("<div class='exp'>" + character.experience + "/" + + character.levelExp[1] + "</div>");
+        node.append("<div class='exp'><div class='bar'></div><div class='text'>" + character.experience + "/" + character.levelExp[1] + "</div></div>");
         character.$dom = node;
         character.onLevelUp = function(character) {
             $('.level', character.$dom).html('Lv.' + character.level);
@@ -19,7 +19,9 @@ define({
             $('.age', character.$dom).html(character.age);
         };
         character.onExpChange = function(character) {
-            $('.exp', character.$dom).html(character.experience + "/" + + character.levelExp[1]);
+            $('.exp .text', character.$dom).html(character.experience + "/" + character.levelExp[1]);
+            // console.log((character.experience - character.levelExp[0]) / (character.levelExp[1] - character.levelExp[0]));
+            $('.exp .bar').css('width', ((character.experience - character.levelExp[0]) / (character.levelExp[1] - character.levelExp[0])) * 100 + '%');
         };
         return node;
     },

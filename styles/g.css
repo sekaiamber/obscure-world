@@ -25,3 +25,32 @@
     text-align: center;
     line-height: 50px;
 }
+
+/******************
+* character
+*******************/
+.character .exp
+{
+    width: 200px;
+    height: 25px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+    position: relative;
+}
+.character .exp .text
+{
+    position: absolute;
+    width: 100%;
+    line-height: 25px;
+    text-align: center;
+}
+.character .exp .bar
+{
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    left: 0;
+    top: 0;
+    background: lightgreen;
+}
