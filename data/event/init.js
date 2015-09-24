@@ -1,9 +1,12 @@
 /* global $ */
 define([
     '../data/event',
-], function(data) {
+    './battleEvent',
+    './exploreEvent',
+], function(data, Battle, Explore) {
     'use strict';
     $.extend(data, {
+        events: {},
         start: function() {
             if(this._id == null) {
                 var cls = this;
@@ -29,6 +32,7 @@ define([
         _id: null,
         occure: function() {
             this.current = this.getEvent();
+            this.current.occure();
             this.onEventOccure(this);
         },
         onEventOccure: function(event) {},
@@ -46,7 +50,11 @@ define([
                     }
                 }
             }
-            return this[kind];
+            return this.events[kind];
+        },
+        update: function(domain) {
+            this.events.battle = new Battle(domain);
+            this.events.explore = new Explore(domain);
         }
     });
     return data;
