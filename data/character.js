@@ -14,6 +14,7 @@ define([
             cha.location = mloc;
         }
         this.onMapChange(mloc);
+        world.event.update(mloc);
     };
     characters.onMapChange = function(loc) {};
     $.extend(world, {
