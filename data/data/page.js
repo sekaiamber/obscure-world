@@ -56,7 +56,9 @@ define({
             .velocity('stop')
             .velocity({
                 'width': '100%'
-            }, event.barunit);
+            }, event.barunit, function() {
+                event.current.callback();
+            });
         $('.text', pro).html(event.current.format);
         return pro;
     }
