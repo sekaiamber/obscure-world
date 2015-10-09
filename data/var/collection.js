@@ -1,3 +1,4 @@
+/* global $ */
 define(function() {
     'use strict';
     var Cls_collection = function() {};
@@ -9,6 +10,10 @@ define(function() {
                 this[i] = meta[i];
                 this.show[i] = false;
             }
+        },
+        RemoveItem: function(index) {
+            this.splice(index, 1);
         }
     });
+    return Cls_collection;
 });
