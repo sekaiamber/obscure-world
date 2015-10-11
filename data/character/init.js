@@ -3,12 +3,14 @@ define([
     './race',
     './attribute',
     './experience',
-], function(Race, Attribute, experience) {
+    './package',
+], function(Race, Attribute, experience, Package) {
     'use strict';
     var Cls_character = function(name, raceName, age, level) {
         this.age = age;
         this.level = level;
         this.name = name;
+        this.package = new Package();
         $.extend(this, new Race(raceName));
         $.extend(this, new Attribute(raceName, age, level));
         $.extend(this, experience);
