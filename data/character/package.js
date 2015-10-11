@@ -8,15 +8,29 @@ define([
     $.extend(Cls_package.prototype, {
         itemMap: {},
         RemoveItem: function(item) {
-            if(typeof item == 'object') {
-                item = item.id;
+            console.log(item)
+            item = this.GetItem(item);
+            console.log(item)
+            if (item == undefined) {
+                return false;
+            } else {
+                item = item[0].id;
             }
-            this.splice(item, 1);
-            // TODO
+            console.log(item)
+            var targetIdx = 0;
+            for (var i = 0; i < this.length; i++) {
+                if (this[i][0].id == item) {
+                    targetIdx = i;
+                    break;
+                }
+            }
+            this.splice(targetIdx, 1);
+            delete this.itemMap[item];
+            return true;
         },
         AddItem: function(item, count) {
             count = count || 1;
-            var i = this.Have(item); 
+            var i = this.GetItem(item); 
             if(i != undefined) {
                 i[1] += count;
             } else {
@@ -28,14 +42,15 @@ define([
                 this.push(p);
             }
         },
-        Have: function(item) {
+        GetItem: function(item) {
             if(typeof item == 'object') {
                 item = item.id;
             }
             return this.itemMap[item];
         },
-        Count: function(item) {
-            
+        ItemCount: function(item) {
+            var i = this.GetItem(item);
+            return i[1];
         },
         money: 0,
         diary: null
