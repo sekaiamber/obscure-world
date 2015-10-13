@@ -27,6 +27,7 @@ define([
             this.characters.push(cha);
             this.characters.moveTo(cha.race.birth);
             this.onAddCharacter(cha);
+            return cha;
         },
         onAddCharacter: function(character) {},
     });
