@@ -13,5 +13,48 @@ define([
         for (var i = 0; i < this.attribute.current.length; i++) {
             this.attribute.current[i] += levelUp[i] * level;
         }
+        // basic attribute
+        this.Life = function() {return this.attribute.current[0];}
+        this.Mana = function() {return this.attribute.current[1];}
+        this.Stamina = function() {return this.attribute.current[2];}
+        this.Str = function() {return this.attribute.current[3];}
+        this.Int = function() {return this.attribute.current[4];}
+        this.Dex = function() {return this.attribute.current[5];}
+        this.Will = function() {return this.attribute.current[6];}
+        this.Luck = function() {return this.attribute.current[7];}
+        this.AP = function() {return this.attribute.current[8];}
+        // float attribute
+        // attack
+        this.Attack = function() {
+            
+        }
+        this.Wounded = function() {
+            
+        }
+        this.MagicAttack = function() {
+            
+        }
+        this.Crit = function() {
+            
+        }
+        this.Balance = function() {
+            
+        }
+        this.DefensePenetration = function() {
+            
+        }
+        // defence
+        this.Defense = function() {
+            
+        }
+        this.Protect = function() {
+            
+        }
+        this.MagicDefense = function() {
+            
+        }
+        this.MagicProtect = function() {
+            
+        }
     };
 });
