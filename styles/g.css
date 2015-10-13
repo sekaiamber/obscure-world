@@ -29,7 +29,7 @@
 /******************
 * character
 *******************/
-.character .exp
+.character .process-bar
 {
     width: 200px;
     height: 25px;
@@ -38,19 +38,30 @@
     overflow: hidden;
     position: relative;
 }
-.character .exp .text
+.character .process-bar .text
 {
     position: absolute;
     width: 100%;
     line-height: 25px;
     text-align: center;
 }
-.character .exp .bar
+.character .process-bar .bar
 {
     position: absolute;
     height: 100%;
     width: 0%;
     left: 0;
     top: 0;
+}
+.character .exp .process-bar .bar
+{
     background: lightgreen;
+}
+.character .life .process-bar .bar
+{
+    background: lightcoral;
+}
+.character .mana .process-bar .bar
+{
+    background: lightblue;
 }
