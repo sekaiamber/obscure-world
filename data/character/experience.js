@@ -17,7 +17,7 @@ define([
                 this.levelExp[0] = data.data[this.level - 1];
                 this.levelExp[1] = data.data[this.level];
             };
-            this.onExpChange(this);
+            this.onExpChange();
         },
         GetLevelByExp: function(exp) {
             var start = 0,
@@ -41,6 +41,6 @@ define([
             }
             return start + 1;
         },
-        onExpChange: function(character) {},
+        onExpChange: function() {},
     }
 });

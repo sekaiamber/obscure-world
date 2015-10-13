@@ -4,13 +4,15 @@ define([
     './attribute',
     './experience',
     './package',
-], function(Race, Attribute, experience, Package) {
+    './equipment'
+], function(Race, Attribute, experience, Package, equipment) {
     'use strict';
     var Cls_character = function(name, raceName, age, level) {
         this.age = age;
         this.level = level;
         this.name = name;
         this.package = new Package();
+        this.equipment = equipment;
         $.extend(this, new Race(raceName));
         $.extend(this, new Attribute(raceName, age, level));
         $.extend(this, experience);
@@ -24,7 +26,7 @@ define([
                 this.attribute.current[i] += levelUp[i] * lv;
             }
             this.level += lv;
-            this.onLevelUp(this);
+            this.onLevelUp();
         },
         AgeUp: function() {
             var ageUp = this.attribute.ageUp[Math.min(Math.max(this.age, 10), 25) + 1]
@@ -32,10 +34,10 @@ define([
                 this.attribute.current[i] += ageUp[i];
             }
             this.age++;
-            this.onAgeUp(this);
+            this.onAgeUp();
         },
-        onLevelUp: function(character) {},
-        onAgeUp: function(character) {},
+        onLevelUp: function() {},
+        onAgeUp: function() {},
     };
     return Cls_character;
 });
