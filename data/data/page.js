@@ -1,6 +1,7 @@
 /* global world */
 /* global $ */
 define({
+    $container: '#main',
     timer: function() {
         
     },

@@ -4,5 +4,5 @@ define([
     './ui/init'
 ], function(world, Init) {
     'use strict';
-    return (window.worldUI = new Init(world, $('#main').first()));
+    return (window.worldUI = new Init(world));
 });
