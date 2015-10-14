@@ -1,10 +1,13 @@
+/* global $ */
 define([
     './event',
-], function(event) {
+    '../data/route',
+    '../data/page'
+], function(event, route, page) {
     'use strict';
-    var Cls_ui = function(world, $container) {
+    var Cls_ui = function(world) {
         this.world = world;
-        this.$container = $container;
+        this.$container = $(page.$container).first();
     };
     Cls_ui.prototype = {
         $container: null,
@@ -12,6 +15,9 @@ define([
             this.world.hooks[module][event] = callback;
         },
         changePage: function(url, callback) {
+            if (route[url]) {
+                url = route[url];
+            }
             this.$container.load(url, callback);
         }
     }
