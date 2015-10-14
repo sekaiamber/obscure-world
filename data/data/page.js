@@ -139,8 +139,9 @@ define({
             });
             $(".menu-new .submit").click(function() {
                 var name = $(".menu-new .name").val();
+                var race = $(".menu-new .race").val();
                 worldUI.changePage('game', function() {
-                    world.AddCharacter(name);
+                    world.AddCharacter(name, race);
                     world.event.start();
                 });
             });
