@@ -15,10 +15,18 @@ define([
             this.world.hooks[module][event] = callback;
         },
         changePage: function(url, callback) {
+            var alase = url;
             if (route[url]) {
                 url = route[url];
             }
-            this.$container.load(url, callback);
+            this.$container.load(url, function(){
+                if (page.pageInit[alase]) {
+                    page.pageInit[alase]();
+                }
+                if (callback) {
+                    callback(arguments);
+                }
+            });
         }
     }
     return Cls_ui;

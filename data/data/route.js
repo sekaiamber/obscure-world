@@ -1,3 +1,4 @@
 define({
-    menu : 'pages/menu.html'
+    menu: 'pages/menu.html',
+    game: 'pages/game.html' 
 });

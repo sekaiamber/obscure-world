@@ -1,3 +1,4 @@
+/* global worldUI */
 /* global world */
 /* global $ */
 define({
@@ -129,5 +130,24 @@ define({
             });
         $('.text', pro).html(event.current.format);
         return pro;
+    },
+    pageInit: {
+        menu: function() {
+            $(".menu .new").click(function(){
+                $(".menu").css("display", "none");
+                $(".menu-new").css("display", "");
+            });
+            $(".menu-new .submit").click(function() {
+                var name = $(".menu-new .name").val();
+                worldUI.changePage('game', function() {
+                    world.AddCharacter(name);
+                    world.event.start();
+                });
+            });
+            $(".menu-new .back").click(function() {
+                $(".menu-new").css("display", "none");
+                $(".menu").css("display", "");
+            });
+        }
     }
 });
