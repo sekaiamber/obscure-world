@@ -5,6 +5,7 @@ define({
         battle: 1,
         explore: 1,
     },
+    probabilityTotal: 2,
     battle: {
         format: '战斗中',
     },

@@ -3,7 +3,8 @@ define([
     '../data/event',
     './battleEvent',
     './exploreEvent',
-], function(data, Battle, Explore) {
+    '../var/helper'
+], function(data, Battle, Explore, helper) {
     'use strict';
     $.extend(data, {
         events: {},
@@ -16,12 +17,6 @@ define([
                 this.onEventStart(this);
                 cls.occure();
             };
-            this.totalProbability = 0;
-            for (var key in this.probability) {
-                if (this.probability.hasOwnProperty(key)) {
-                    this.totalProbability += this.probability[key];
-                }
-            } 
         },
         stop: function() {
             if(this._id) {
@@ -38,18 +33,7 @@ define([
         onEventOccure: function(event) {},
         onEventStart: function(event) {},
         getEvent: function() {
-            var p = Math.random() * this.totalProbability;
-            var pp = 0;
-            var kind = '';
-            for (var key in this.probability) {
-                if (this.probability.hasOwnProperty(key)) {
-                    kind = key;
-                    pp += this.probability[key];
-                    if(pp >= p) {
-                        break;
-                    }
-                }
-            }
+            var kind = helper.getRandom(data.probability, data.probabilityTotal)
             return this.events[kind];
         },
         update: function(domain) {
