@@ -12,7 +12,10 @@ define([
     $.extend(Cls_exploreEvent.prototype, {
         format: data.explore.format,
         active: function() {
-            return ['success', 50];
+            this.explore();
+        },
+        explore: function() {
+            this.setStatus('success', 50);
         },
         success: function(exp) {
             var l = world.characters.length;
@@ -20,6 +23,7 @@ define([
                 var cha = world.characters[i];
                 cha.AddExp(exp);
             }
+            this.done();
         },
         fail: function(exp) {
             var l = world.characters.length;
@@ -27,6 +31,7 @@ define([
                 var cha = world.characters[i];
                 cha.AddExp(exp);
             }
+            this.done();
         }
     });
     return Cls_exploreEvent;

@@ -11,8 +11,11 @@ define([
     Cls_battleEvent.prototype = new Base();
     $.extend(Cls_battleEvent.prototype, {
         format: data.battle.format,
-        active: function() {
-            return ['success', 100];
+        active: function(characters, monster) {
+            this.battle(characters, monster);
+        },
+        battle: function(characters, monster) {
+            this.setStatus('success', 100);
         },
         success: function(exp) {
             var l = world.characters.length;
@@ -20,6 +23,7 @@ define([
                 var cha = world.characters[i];
                 cha.AddExp(exp);
             }
+            this.done();
         },
         fail: function(exp) {
             var l = world.characters.length;
@@ -27,6 +31,7 @@ define([
                 var cha = world.characters[i];
                 cha.AddExp(exp);
             }
+            this.done();
         }
     });
     return Cls_battleEvent;
