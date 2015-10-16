@@ -9,31 +9,28 @@ define([
     $.extend(data, {
         events: {},
         start: function() {
-            if(this._id == null) {
-                var cls = this;
-                this._id = window.setInterval(function(){
-                    cls.occure();
-                }, this.unit);
-                this.onEventStart(this);
-                cls.occure();
-            };
+            this.onEventStart(this);
+            this.occure();
         },
         stop: function() {
-            if(this._id) {
-                window.clearInterval(this._id);
-            }
-            this._id = null;
+            
         },
         _id: null,
         occure: function() {
             this.current = this.getEvent();
+            var cls = this;
+            this.current.done = function() {
+                cls.occure();
+            };
             this.current.occure();
             this.onEventOccure(this);
         },
         onEventOccure: function(event) {},
+        onEventProcessing: function(event) {},
         onEventStart: function(event) {},
         getEvent: function() {
             var kind = helper.getRandom(data.probability, data.probabilityTotal)
+            this.kind = kind;
             return this.events[kind];
         },
         update: function(domain) {
