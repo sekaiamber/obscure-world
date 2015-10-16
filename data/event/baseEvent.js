@@ -9,13 +9,14 @@ define(function() {
         active: function() {},
         pass: function() {},
         occure: function() {
-            var ret = this.active(arguments);
-            this.sign = ret[0];
-            this.data = ret[1];
+            this.active(arguments);
         },
-        callback: function() {
+        continue: function() {
             this[this.sign](this.data);
-            this.done(arguments);
+        },
+        setStatus: function(sign, data) {
+            this.sign = sign;
+            this.data = data;
         },
         sign: 'pass',
         data: {}
