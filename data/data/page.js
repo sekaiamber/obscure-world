@@ -1,6 +1,8 @@
+/* global worldUI */
 /* global world */
 /* global $ */
 define({
+    $container: '#main',
     timer: function() {
         
     },
@@ -13,7 +15,7 @@ define({
         $(".value", ret).append(value);
         return ret;
     },
-    character: function(character) {
+    world_onAddCharacter: function(character) {
         var node = $("<li class='character'></li>");
         node.append("<div class='name'>" + character.name + "</div>");
         node.append("<div><table><tbody></tbody></table></div>");
@@ -92,7 +94,7 @@ define({
         character.updateAttribute();
         return node;
     },
-    location: function(location) {
+    characters_onMapChange: function(location) {
         var node = $('<div class="domain"></div>');
         node.append('<div class="name">' + location.name + '</div>');
         var neighbor = $('<div class="neighbor"><ul></ul></div>');
@@ -108,7 +110,7 @@ define({
         node.append(neighbor); 
         return node;
     },
-    process: function(event) {
+    event_onEventStart: function(event) {
         var pro = $('.process').first();
         var bar = $('<div class="bar"></div>');
         var text = $('<div class="text"></div>');
@@ -116,17 +118,39 @@ define({
         pro.append(text);
         return pro;
     },
-    processGo: function(event) {
+    event_onEventOccure: function(event) {
         var pro = $('.process').first();
-        $('.bar', pro)
-            .css('width', '0%')
-            .velocity('stop')
-            .velocity({
+        $('.bar', pro).css('width', '0%');
+        // $('.bar', pro).velocity('stop');
+        $('.bar', pro).velocity({
                 'width': '100%'
-            }, event.barunit, function() {
-                event.current.callback();
+            }, event[event.kind].barunit, function() {
+                event.current.continue();
             });
         $('.text', pro).html(event.current.format);
         return pro;
+    },
+    event_onEventProcessing: function(event) {
+        
+    },
+    pageInit: {
+        menu: function() {
+            $(".menu .new").click(function(){
+                $(".menu").css("display", "none");
+                $(".menu-new").css("display", "");
+            });
+            $(".menu-new .submit").click(function() {
+                var name = $(".menu-new .name").val();
+                var race = $(".menu-new .race").val();
+                worldUI.changePage('game', function() {
+                    world.AddCharacter(name, race);
+                    world.event.start();
+                });
+            });
+            $(".menu-new .back").click(function() {
+                $(".menu-new").css("display", "none");
+                $(".menu").css("display", "");
+            });
+        }
     }
 });

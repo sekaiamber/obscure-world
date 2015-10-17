@@ -1,3 +1,4 @@
+/* global $ */
 define([
     'world',
     './ui/init'
