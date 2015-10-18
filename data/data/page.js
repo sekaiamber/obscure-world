@@ -120,11 +120,9 @@ define({
     },
     event_onEventOccure: function(event) {
         var pro = $('.process').first();
-        console.l
-        $('.bar', pro)
-            .css('width', '0%')
-            .velocity('stop')
-            .velocity({
+        $('.bar', pro).css('width', '0%');
+        // $('.bar', pro).velocity('stop');
+        $('.bar', pro).velocity({
                 'width': '100%'
             }, event[event.kind].barunit, function() {
                 event.current.continue();
