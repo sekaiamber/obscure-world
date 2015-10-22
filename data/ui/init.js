@@ -1,9 +1,10 @@
 /* global $ */
 define([
     './event',
+    './shortcut',
     '../data/route',
     '../data/page'
-], function(event, route, page) {
+], function(event, shortcut, route, page) {
     'use strict';
     var Cls_ui = function(world) {
         this.world = world;
@@ -29,5 +30,6 @@ define([
             });
         }
     }
+    $.extend(Cls_ui.prototype, shortcut);
     return Cls_ui;
 });
