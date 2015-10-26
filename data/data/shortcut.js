@@ -1,5 +1,6 @@
 define({
     down: {
-        'Ctrl+C': 'openCharacterPanel'
+        'C': 'openCharacterPanel',
+        'I': function() {console.log(1)},
     }
 });

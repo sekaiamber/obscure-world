@@ -30,6 +30,6 @@ define([
             });
         }
     }
-    $.extend(Cls_ui.prototype, shortcut);
+    $.extend(Cls_ui.prototype, {shortcut: shortcut});
     return Cls_ui;
 });
