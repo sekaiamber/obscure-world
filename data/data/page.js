@@ -198,27 +198,28 @@ define({
             var nodeId = "__CharacterPanel__";
             var node = $("#" + nodeId);
             if (node.length == 0) {
+                var character = world.characters[0];
                 node = $('<div id="' + nodeId + '" title="人物信息"></div>');
-                node.append("<div class='name'>" + world.characters[0].name + "</div>");
+                node.append("<div class='name'>" + character.name + "</div>");
                 node.append("<div><table><tbody></tbody></table></div>");
                 var tb = $("tbody", node);
                 // info
-                tb.append(this._characterRow('age', '年龄', world.characters[0].age));
-                tb.append(this._characterRow('race', '种族', world.characters[0].race.name));
-                tb.append(this._characterRow('level', '等级', world.characters[0].level));
+                tb.append(this._characterRow('age', '年龄', character.age));
+                tb.append(this._characterRow('race', '种族', character.race.name));
+                tb.append(this._characterRow('level', '等级', character.level));
                 // attribute
-                tb.append(this._characterRow('life', '最大生命值', '0'));
-                tb.append(this._characterRow('mana', '最大魔法值', '0'));
-                tb.append(this._characterRow('str', '力量', '0(0)'));
-                tb.append(this._characterRow('int', '智力', '0(0)'));
-                tb.append(this._characterRow('dex', '敏捷', '0(0)'));
-                tb.append(this._characterRow('will', '意志', '0(0)'));
-                tb.append(this._characterRow('luck', '幸运', '0(0)'));
-                tb.append(this._characterRow('atk', '物理攻击力', '0~0'));
-                tb.append(this._characterRow('wound', '负伤率', '0%~0%'));
-                tb.append(this._characterRow('mgcatk', '魔法攻击力', '0'));
-                tb.append(this._characterRow('crit', '暴击率', '0%'));
-                tb.append(this._characterRow('balance', '平衡性', '0%'));
+                tb.append(this._characterRow('life', '最大生命值', Math.floor(character.Life()[0])));
+                tb.append(this._characterRow('mana', '最大魔法值', Math.floor(character.Mana()[0])));
+                tb.append(this._characterRow('str', '力量', Math.floor(character.Str()[1]) + "(" + Math.floor(character.Str()[0]) + ")"));
+                tb.append(this._characterRow('int', '智力', Math.floor(character.Int()[1]) + "(" + Math.floor(character.Int()[0]) + ")"));
+                tb.append(this._characterRow('dex', '敏捷', Math.floor(character.Dex()[1]) + "(" + Math.floor(character.Dex()[0]) + ")"));
+                tb.append(this._characterRow('will', '意志', Math.floor(character.Will()[1]) + "(" + Math.floor(character.Will()[0]) + ")"));
+                tb.append(this._characterRow('luck', '幸运', Math.floor(character.Luck()[1]) + "(" + Math.floor(character.Luck()[0]) + ")"));
+                tb.append(this._characterRow('atk', '物理攻击力', Math.floor(character.Attack()[0]) + "~" + Math.floor(character.Attack()[1])));
+                tb.append(this._characterRow('wound', '负伤率', Math.floor(character.Wounded()[0]) + "%~" + Math.floor(character.Wounded()[1]) + "%"));
+                tb.append(this._characterRow('mgcatk', '魔法攻击力', Math.floor(character.MagicAttack())));
+                tb.append(this._characterRow('crit', '暴击率', Math.floor(character.Crit()) + '%'));
+                tb.append(this._characterRow('balance', '平衡性', Math.floor(character.Balance()) + '%'));
                 node.dialog({
                     close: function() {
                         node.remove();
