@@ -1,7 +1,19 @@
 /* global $ */
 define([
-    '../data/shortcut'
-], function(data) {
+    '../data/shortcut',
+    '../data/page'
+], function(data, page) {
+    var shortcutHandler = function(e, eObject) {
+        var d = data[eObject.type][eObject.mask];
+        if (typeof d == 'function') {
+            d(e, eObject);
+        } else if (typeof d == 'string') {
+            var c = page.shortcutCallbacks[d];
+            if(c && typeof c == 'function') {
+                c.call(page, [e, eObject]);
+            }
+        }
+    };
     for (var t in data) {
         if (data.hasOwnProperty(t)) {
             var map = data[t];
@@ -11,17 +23,16 @@ define([
                     $.Shortcuts.add({
                         type: t,
                         mask: key,
-                        handler: function(e) {
-                            console.log(e);
-                        }
+                        handler: shortcutHandler
                     });
                 }
             }
         }
     }
-    $.Shortcuts.start();
     return {
-        map: data
-        
+        map: data,
+        start: function() {
+            $.Shortcuts.start();
+        }
     }
 });
