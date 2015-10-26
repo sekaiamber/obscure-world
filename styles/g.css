@@ -29,15 +29,97 @@
 /******************
 * character
 *******************/
-.character .process-bar
+.character
 {
-    width: 200px;
-    height: 25px;
-    border: 1px solid #000;
-    position: relative;
+    height: 90px;
+    width: 300px;
     overflow: hidden;
+    border: #000 solid 1px;
     position: relative;
 }
+.character .thumb,
+.character .bars,
+.character .process-bar.exp
+{
+    float: left;
+    height: 100%;
+}
+.character .name,
+.character .level
+{
+    position: absolute;
+}
+.character .thumb,
+.character .bars
+{
+    border: #000 solid 0px;
+    border-right-width: 1px;
+}
+.character .thumb
+{
+    width: 75px;
+}
+.character .bars
+{
+    width: 200px;
+}
+.character .process-bar.life
+{
+    height: 60px;
+    border: #000 solid 0px;
+    border-bottom-width: 1px;
+}
+.character .process-bar.mana
+{
+    height: 29px;
+}
+.character .process-bar.exp
+{
+    width: 23px;
+}
+.character .name
+{
+    font-size: 20px;
+    top: 1px;
+    left: 85px;
+}
+.character .level
+{
+    top: 25px;
+    left: 85px;
+}
+.character .level:before
+{
+    content: 'Lv.';
+}
+.character .process-bar
+{
+    position: relative;
+}
+.character .process-bar .text
+{
+    position: absolute;
+    text-align: right;
+    bottom: 2px;
+    right: 2px;
+}
+.character .process-bar .bar
+{
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    left: 0;
+    top: 0;
+}
+.character .process-bar .bar.bottom
+{
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    top: auto;
+}
+/*
+
 .character .process-bar .text
 {
     position: absolute;
@@ -53,15 +135,16 @@
     left: 0;
     top: 0;
 }
-.character .exp .process-bar .bar
+*/
+.character .exp.process-bar .bar
 {
     background: lightgreen;
 }
-.character .life .process-bar .bar
+.character .life.process-bar .bar
 {
     background: lightcoral;
 }
-.character .mana .process-bar .bar
+.character .mana.process-bar .bar
 {
     background: lightblue;
 }
