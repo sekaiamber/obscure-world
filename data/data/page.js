@@ -16,11 +16,6 @@ define({
             bar.css('width', ((value - min) / (max - min)) * 100 + '%');
         }
     },
-    _characterRow: function(cls, name, value) {
-        var ret = $("<tr class='" + cls + "'><td class='key'>" + name + "</td><td class='value'></td></tr>");
-        $(".value", ret).append(value);
-        return ret;
-    },
     world_onAddCharacter: function(character) {
         var node = $("<li class='character'></li>");
         var thumb = $("<div class='thumb'></div>");
@@ -188,6 +183,50 @@ define({
                 $(".menu-new").css("display", "none");
                 $(".menu").css("display", "");
             });
+        },
+        game: function() {
+            worldUI.shortcut.start();
+        }
+    },
+    _characterRow: function(cls, name, value) {
+        var ret = $("<tr class='" + cls + "'><td class='key'>" + name + "</td><td class='value'></td></tr>");
+        $(".value", ret).append(value);
+        return ret;
+    },
+    shortcutCallbacks: {
+        openCharacterPanel: function() {
+            var nodeId = "__CharacterPanel__";
+            var node = $("#" + nodeId);
+            if (node.length == 0) {
+                node = $('<div id="' + nodeId + '" title="人物信息"></div>');
+                node.append("<div class='name'>" + world.characters[0].name + "</div>");
+                node.append("<div><table><tbody></tbody></table></div>");
+                var tb = $("tbody", node);
+                // info
+                tb.append(this._characterRow('age', '年龄', world.characters[0].age));
+                tb.append(this._characterRow('race', '种族', world.characters[0].race.name));
+                tb.append(this._characterRow('level', '等级', world.characters[0].level));
+                // attribute
+                tb.append(this._characterRow('life', '最大生命值', '0'));
+                tb.append(this._characterRow('mana', '最大魔法值', '0'));
+                tb.append(this._characterRow('str', '力量', '0(0)'));
+                tb.append(this._characterRow('int', '智力', '0(0)'));
+                tb.append(this._characterRow('dex', '敏捷', '0(0)'));
+                tb.append(this._characterRow('will', '意志', '0(0)'));
+                tb.append(this._characterRow('luck', '幸运', '0(0)'));
+                tb.append(this._characterRow('atk', '物理攻击力', '0~0'));
+                tb.append(this._characterRow('wound', '负伤率', '0%~0%'));
+                tb.append(this._characterRow('mgcatk', '魔法攻击力', '0'));
+                tb.append(this._characterRow('crit', '暴击率', '0%'));
+                tb.append(this._characterRow('balance', '平衡性', '0%'));
+                node.dialog({
+                    close: function() {
+                        node.remove();
+                    }
+                });
+            } else {
+                node.dialog('close');
+            }
         }
     }
 });
