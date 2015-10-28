@@ -5,6 +5,6 @@ define([
     'use strict';
     return {
         map: domain,
-        monster: monster.data
+        monster: monster
     };
 });

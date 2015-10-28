@@ -22,7 +22,14 @@ define([
             this.current.done = function() {
                 cls.occure();
             };
+            this.current.notdone = function() {
+                cls.current.continue();
+                cls.onEventOccure(cls);
+            };
             this.current.occure();
+            this.onEventOccure(this);
+        },
+        step: function() {
             this.onEventOccure(this);
         },
         onEventOccure: function(event) {},

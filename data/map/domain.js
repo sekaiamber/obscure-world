@@ -18,8 +18,12 @@ define([
         if (data.hasOwnProperty(key)) {
             var source = data[key];
             var obj = new Cls_domain(key, source.name, source.neighbor);
-            if (monster.domain[key]) {
-                obj.monster = monster.domain[key]
+            if (monster.probability[key]) {
+                obj.monster = monster.probability[key]
+                obj.monsterProbabilityTotal = monster.probabilityTotal[key];
+            } else {
+                obj.monster = [];
+                obj.monsterProbabilityTotal = 0;
             }
             data[key] = obj;
             

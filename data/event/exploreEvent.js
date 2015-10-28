@@ -15,7 +15,7 @@ define([
             this.explore();
         },
         explore: function() {
-            this.setStatus('success', 50);
+            this.setStatus('success', [50]);
         },
         success: function(exp) {
             var l = world.characters.length;
