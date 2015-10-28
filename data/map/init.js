@@ -1,6 +1,10 @@
 define([
     './domain',
-], function(domain) {
+    './monster'
+], function(domain, monster) {
     'use strict';
-    return domain;
+    return {
+        map: domain,
+        monster: monster
+    };
 });
