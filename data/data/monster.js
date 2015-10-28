@@ -19,7 +19,13 @@ define({
             money: 9
         }
     },
-    domain: {
-        1: [1, 2]
+    probability: {
+        1: {
+            1: 1,
+            2: 1
+        }
+    },
+    probabilityTotal: {
+        1: 2
     }
 });

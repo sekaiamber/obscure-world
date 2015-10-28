@@ -1,6 +1,13 @@
+/* global $ */
 define([
     '../data/monster',
-], function(data) {
+    '../dataReader'
+], function(data, reader) {
     'use strict';
+    $.extend(data, {
+        getMonsterObj: function(id) {
+            return reader(this.data, id);
+        }
+    });
     return data;
 });
