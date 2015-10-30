@@ -1,5 +1,5 @@
 define({
-    getRandom: function(map, total) {
+    getRandomFromMap: function(map, total) {
         var p = Math.random() * total;
         var pp = 0;
         var kind = '';
@@ -13,5 +13,8 @@ define({
             }
         }
         return kind;
-    }
+    },
+    getRandom: function(min, max) {
+        return Math.random() * (max - min) + min;
+    },
 });

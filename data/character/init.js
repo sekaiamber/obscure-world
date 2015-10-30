@@ -38,6 +38,7 @@ define([
         },
         onLevelUp: function() {},
         onAgeUp: function() {},
+        onUpdateAttribute: function() {},
     };
     return Cls_character;
 });

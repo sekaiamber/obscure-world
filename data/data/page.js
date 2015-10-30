@@ -220,6 +220,10 @@ define({
                 tb.append(this._characterRow('mgcatk', '魔法攻击力', Math.floor(character.MagicAttack())));
                 tb.append(this._characterRow('crit', '暴击率', Math.floor(character.Crit()) + '%'));
                 tb.append(this._characterRow('balance', '平衡性', Math.floor(character.Balance()) + '%'));
+                tb.append(this._characterRow('defensePenetration', '防御贯穿', Math.floor(character.DefensePenetration())));
+                tb.append(this._characterRow('defense', '防御', Math.floor(character.Defense())));
+                tb.append(this._characterRow('protect', '保护', Math.floor(character.Protect())));
+                tb.append(this._characterRow('magicDefense', '魔法防御', Math.floor(character.MagicDefense())));
                 node.dialog({
                     close: function() {
                         node.remove();
