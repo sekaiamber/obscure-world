@@ -114,7 +114,7 @@ define([
             return ret;
         }
         this.Protect = function() {
-            var ret = 0;
+            var ret = 20;
             return ret;
         }
         this.MagicDefense = function() {
