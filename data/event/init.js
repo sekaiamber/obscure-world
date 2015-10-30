@@ -36,7 +36,7 @@ define([
         onEventProcessing: function(event) {},
         onEventStart: function(event) {},
         getEvent: function() {
-            var kind = helper.getRandom(data.probability, data.probabilityTotal)
+            var kind = helper.getRandomFromMap(data.probability, data.probabilityTotal)
             this.kind = kind;
             return this.events[kind];
         },
