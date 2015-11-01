@@ -3,6 +3,7 @@
 /* global $ */
 define({
     $container: '#main',
+    $console: '.console',
     timer: function() {
         
     },
@@ -164,6 +165,12 @@ define({
     },
     event_onEventProcessing: function(event) {
         
+    },
+    helper_onStdout: function(msg) {
+        worldUI.$console.append('<div class="console-item">' + msg + '</div>');
+        if ($(".console-item", worldUI.$console).length >= 30) {
+            $(".console-item:eq(0)", worldUI.$console).remove();
+        }
     },
     pageInit: {
         menu: function() {
