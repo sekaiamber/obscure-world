@@ -17,4 +17,8 @@ define({
     getRandom: function(min, max) {
         return Math.random() * (max - min) + min;
     },
+    onStdout: function() {},
+    stdout: function(key, data) {
+        this.onStdout(key, data);
+    }
 });
