@@ -8,15 +8,12 @@ define([
     $.extend(Cls_package.prototype, {
         itemMap: {},
         RemoveItem: function(item) {
-            console.log(item)
             item = this.GetItem(item);
-            console.log(item)
             if (item == undefined) {
                 return false;
             } else {
                 item = item[0].id;
             }
-            console.log(item)
             var targetIdx = 0;
             for (var i = 0; i < this.length; i++) {
                 if (this[i][0].id == item) {

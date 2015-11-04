@@ -13,7 +13,7 @@ define([
             this.occure();
         },
         stop: function() {
-            
+            this.current.done = function() {}
         },
         _id: null,
         occure: function() {

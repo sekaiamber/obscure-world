@@ -3,7 +3,7 @@
 /* global $ */
 define({
     $container: '#main',
-    $console: '.console',
+    $console: '#console',
     timer: function() {
         
     },
@@ -31,13 +31,13 @@ define({
         
         character.onLevelUp = function() {
             $('.level', this.$dom).html(this.level);
-            this.updateAttribute();
+            this.onUpdateAttribute();
         };
         character._processBarChange = this._processBarChange;
         character.onExpChange = function() {
             this._processBarChange($('.exp.process-bar', this.$dom), this.experience, this.levelExp[0], this.levelExp[1]);
         };
-        character.updateAttribute = function() {
+        character.onUpdateAttribute = function() {
             var data = this.Life();
             data = [Math.floor(data[0]), Math.floor(data[1])]
             this._processBarChange($('.life.process-bar', this.$dom), data[1], 0, data[0], data[1]);
@@ -46,7 +46,7 @@ define({
             this._processBarChange($('.mana.process-bar', this.$dom), data[1], 0, data[0], data[1]);
         };
         character.$dom = node;
-        character.updateAttribute();
+        character.onUpdateAttribute();
         return node;
     },
     characters_onMapChange: function(location) {
@@ -88,8 +88,14 @@ define({
     event_onEventProcessing: function(event) {
         
     },
-    helper_onStdout: function(msg) {
-        worldUI.$console.append('<div class="console-item">' + msg + '</div>');
+    helper_onStdout: function(key, data) {
+        var additem = $('<div class="console-item"></div>');
+        if (data && this.adapters[key]) {
+            additem.append(this.adapters[key](data));
+        } else {
+            additem.append(key);
+        }
+        worldUI.$console.append(additem);
         if ($(".console-item", worldUI.$console).length >= 30) {
             $(".console-item:eq(0)", worldUI.$console).remove();
         }

@@ -17,17 +17,17 @@ define([
         // basic attribute
         this.Life = function() {
             var b = this.attribute.current[0];
-            return [b, b + this.dLife];
+            return [b, Math.max(b + this.dLife, 0)];
         }
         this.dLife = 0;
         this.Mana = function() {
             var b = this.attribute.current[1];
-            return [b, b + this.dMana];
+            return [b, Math.max(b + this.dMana, 0)];
         }
         this.dMana = 0;
         this.Stamina = function() {
             var b = this.attribute.current[2];
-            return [b, b + this.dStamina];
+            return [b, Math.max(b + this.dStamina, 0)];
         }
         this.dStamina = 0;
         this.Str = function() {
