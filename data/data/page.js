@@ -31,13 +31,13 @@ define({
         
         character.onLevelUp = function() {
             $('.level', this.$dom).html(this.level);
-            this.updateAttribute();
+            this.onUpdateAttribute();
         };
         character._processBarChange = this._processBarChange;
         character.onExpChange = function() {
             this._processBarChange($('.exp.process-bar', this.$dom), this.experience, this.levelExp[0], this.levelExp[1]);
         };
-        character.updateAttribute = function() {
+        character.onUpdateAttribute = function() {
             var data = this.Life();
             data = [Math.floor(data[0]), Math.floor(data[1])]
             this._processBarChange($('.life.process-bar', this.$dom), data[1], 0, data[0], data[1]);
@@ -46,7 +46,7 @@ define({
             this._processBarChange($('.mana.process-bar', this.$dom), data[1], 0, data[0], data[1]);
         };
         character.$dom = node;
-        character.updateAttribute();
+        character.onUpdateAttribute();
         return node;
     },
     characters_onMapChange: function(location) {

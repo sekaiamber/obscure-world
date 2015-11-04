@@ -36,6 +36,10 @@ define([
             this.age++;
             this.onAgeUp();
         },
+        Revive: function() {
+            this.dLife = this.dMana = this.dStamina = 0;
+            this.onUpdateAttribute();
+        },
         onLevelUp: function() {},
         onAgeUp: function() {},
         onUpdateAttribute: function() {},
