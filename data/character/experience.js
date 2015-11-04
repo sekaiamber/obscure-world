@@ -6,6 +6,9 @@ define([
         experience: 0,
         levelExp: [data.data[0], data.data[1]],
         AddExp: function(exp) {
+            if (typeof exp == 'string') {
+                exp = (this.levelExp[1] - this.levelExp[0]) * (parseInt(exp.split('%')[0]) / 100)
+            }
             this.experience += exp;
             if(this.experience > data.data[data.data.length - 1]) {
                 this.experience = data.data[data.data.length - 1];
