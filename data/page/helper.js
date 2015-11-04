@@ -1,11 +1,14 @@
+/* global world */
 /* global $ */
 define([
     '../data/page',
+    '../data/console',
     '../var/helper'
-], function(data, helper) {
+], function(data, adapters, helper) {
     'use strict';
     return (function(ui) {
-        ui.hooks['helper'] = helper;
+        world.hooks['helper'] = helper;
+        helper.adapters = adapters;
         $(document).ready(function(){
             ui.setHooksCallback('helper', 'onStdout', data.helper_onStdout);
         });

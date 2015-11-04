@@ -3,7 +3,7 @@
 /* global $ */
 define({
     $container: '#main',
-    $console: '.console',
+    $console: '#console',
     timer: function() {
         
     },
@@ -88,8 +88,14 @@ define({
     event_onEventProcessing: function(event) {
         
     },
-    helper_onStdout: function(msg) {
-        worldUI.$console.append('<div class="console-item">' + msg + '</div>');
+    helper_onStdout: function(key, data) {
+        var additem = $('<div class="console-item"></div>');
+        if (data && this.adapters[key]) {
+            additem.append(this.adapters[key](data));
+        } else {
+            additem.append(key);
+        }
+        worldUI.$console.append(additem);
         if ($(".console-item", worldUI.$console).length >= 30) {
             $(".console-item:eq(0)", worldUI.$console).remove();
         }
