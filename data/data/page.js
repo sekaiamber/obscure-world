@@ -135,35 +135,41 @@ define({
             if (node.length == 0) {
                 var character = world.characters[0];
                 node = $('<div id="' + nodeId + '" title="人物信息"></div>');
-                node.append("<div class='name'>" + character.name + "</div>");
-                node.append("<div><table><tbody></tbody></table></div>");
-                var tb = $("tbody", node);
-                // info
-                tb.append(this._characterRow('age', '年龄', character.age));
-                tb.append(this._characterRow('race', '种族', character.race.name));
-                tb.append(this._characterRow('level', '等级', character.level));
-                // attribute
-                tb.append(this._characterRow('life', '最大生命值', Math.floor(character.Life()[0])));
-                tb.append(this._characterRow('mana', '最大魔法值', Math.floor(character.Mana()[0])));
-                tb.append(this._characterRow('str', '力量', Math.floor(character.Str()[1]) + "(" + Math.floor(character.Str()[0]) + ")"));
-                tb.append(this._characterRow('int', '智力', Math.floor(character.Int()[1]) + "(" + Math.floor(character.Int()[0]) + ")"));
-                tb.append(this._characterRow('dex', '敏捷', Math.floor(character.Dex()[1]) + "(" + Math.floor(character.Dex()[0]) + ")"));
-                tb.append(this._characterRow('will', '意志', Math.floor(character.Will()[1]) + "(" + Math.floor(character.Will()[0]) + ")"));
-                tb.append(this._characterRow('luck', '幸运', Math.floor(character.Luck()[1]) + "(" + Math.floor(character.Luck()[0]) + ")"));
-                tb.append(this._characterRow('atk', '物理攻击力', Math.floor(character.Attack()[0]) + "~" + Math.floor(character.Attack()[1])));
-                tb.append(this._characterRow('wound', '负伤率', Math.floor(character.Wounded()[0]) + "%~" + Math.floor(character.Wounded()[1]) + "%"));
-                tb.append(this._characterRow('mgcatk', '魔法攻击力', Math.floor(character.MagicAttack())));
-                tb.append(this._characterRow('crit', '暴击率', Math.floor(character.Crit()) + '%'));
-                tb.append(this._characterRow('balance', '平衡性', Math.floor(character.Balance()) + '%'));
-                tb.append(this._characterRow('defensePenetration', '防御贯穿', Math.floor(character.DefensePenetration())));
-                tb.append(this._characterRow('defense', '防御', Math.floor(character.Defense())));
-                tb.append(this._characterRow('protect', '保护', Math.floor(character.Protect())));
-                tb.append(this._characterRow('magicDefense', '魔法防御', Math.floor(character.MagicDefense())));
                 node.dialog({
+                    open: function() {
+                        worldUI.changePage('characterPanel', function() {
+                            
+                        }, node);
+                    },
                     close: function() {
                         node.remove();
                     }
                 });
+                
+                // node.append("<div class='name'>" + character.name + "</div>");
+                // node.append("<div><table><tbody></tbody></table></div>");
+                // var tb = $("tbody", node);
+                // // info
+                // tb.append(this._characterRow('age', '年龄', character.age));
+                // tb.append(this._characterRow('race', '种族', character.race.name));
+                // tb.append(this._characterRow('level', '等级', character.level));
+                // // attribute
+                // tb.append(this._characterRow('life', '最大生命值', Math.floor(character.Life()[0])));
+                // tb.append(this._characterRow('mana', '最大魔法值', Math.floor(character.Mana()[0])));
+                // tb.append(this._characterRow('str', '力量', Math.floor(character.Str()[1]) + "(" + Math.floor(character.Str()[0]) + ")"));
+                // tb.append(this._characterRow('int', '智力', Math.floor(character.Int()[1]) + "(" + Math.floor(character.Int()[0]) + ")"));
+                // tb.append(this._characterRow('dex', '敏捷', Math.floor(character.Dex()[1]) + "(" + Math.floor(character.Dex()[0]) + ")"));
+                // tb.append(this._characterRow('will', '意志', Math.floor(character.Will()[1]) + "(" + Math.floor(character.Will()[0]) + ")"));
+                // tb.append(this._characterRow('luck', '幸运', Math.floor(character.Luck()[1]) + "(" + Math.floor(character.Luck()[0]) + ")"));
+                // tb.append(this._characterRow('atk', '物理攻击力', Math.floor(character.Attack()[0]) + "~" + Math.floor(character.Attack()[1])));
+                // tb.append(this._characterRow('wound', '负伤率', Math.floor(character.Wounded()[0]) + "%~" + Math.floor(character.Wounded()[1]) + "%"));
+                // tb.append(this._characterRow('mgcatk', '魔法攻击力', Math.floor(character.MagicAttack())));
+                // tb.append(this._characterRow('crit', '暴击率', Math.floor(character.Crit()) + '%'));
+                // tb.append(this._characterRow('balance', '平衡性', Math.floor(character.Balance()) + '%'));
+                // tb.append(this._characterRow('defensePenetration', '防御贯穿', Math.floor(character.DefensePenetration())));
+                // tb.append(this._characterRow('defense', '防御', Math.floor(character.Defense())));
+                // tb.append(this._characterRow('protect', '保护', Math.floor(character.Protect())));
+                // tb.append(this._characterRow('magicDefense', '魔法防御', Math.floor(character.MagicDefense())));
             } else {
                 node.dialog('close');
             }

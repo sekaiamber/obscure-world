@@ -17,12 +17,13 @@ define([
         setHooksCallback: function(module, event, callback) {
             this.world.hooks[module][event] = callback;
         },
-        changePage: function(url, callback) {
+        changePage: function(url, callback, target) {
             var alase = url;
             if (route[url]) {
                 url = route[url];
             }
-            this.$container.load(url, function(){
+            target = target || this.$container; 
+            target.load(url, function(){
                 if (page.pageInit[alase]) {
                     page.pageInit[alase]();
                 }
