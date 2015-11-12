@@ -123,5 +123,9 @@ define([
             ret += this.Int()[1] / 20;
             return ret;
         }
+        this.Duck = function(target) {
+            var ret = 0.3;
+            return ret;
+        };
     };
 });
