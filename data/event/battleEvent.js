@@ -24,11 +24,12 @@ define([
         },
         battle: function(characters, monster, direction) {
             var atk = 0;
+            var cha = world.characters[0];
             if (direction == 1) {
                 // player attack monster
                 var l = world.characters.length;
                 for (var i = 0; i < l; i++) {
-                    var cha = world.characters[i];
+                    cha = world.characters[i];
                     atk = cha.Attack();
                     atk = helper.getRandom(atk[0], atk[1]);
                     var crit = Math.random() < Math.min(cha.Crit() / 100, 0.4);
@@ -41,16 +42,20 @@ define([
                 }
             } else {
                 // monster attack player
-                for (var i = 0; i < monster.atktime; i++) {
-                    atk = helper.getRandom(monster.atk[0], monster.atk[1]);
-                    atk *= 0.2; // change the difficulty
-                    var cha = world.characters[0];
-                    atk *= (100 - Math.min(100, cha.Protect())) / 100;
-                    atk -= cha.Defense();
-                    atk = Math.max(1, atk);
-                    cha.dLife -= atk;
-                    cha.onUpdateAttribute();
-                    helper.stdout('battle', [monster, cha, atk]);
+                if (helper.getRandom(0, 1) < cha.Duck()) {
+                    helper.stdout('battle', [monster, cha, 0, 'miss']);
+                } else {
+                    for (var i = 0; i < monster.atktime; i++) {
+                        atk = helper.getRandom(monster.atk[0], monster.atk[1]);
+                        atk *= 0.2; // change the difficulty
+                        cha = world.characters[0];
+                        atk *= (100 - Math.min(100, cha.Protect())) / 100;
+                        atk -= cha.Defense();
+                        atk = Math.max(1, atk);
+                        cha.dLife -= atk;
+                        cha.onUpdateAttribute();
+                        helper.stdout('battle', [monster, cha, atk]);
+                    }
                 }
             }
             this.setStatus('afterBattle', [characters, monster, 0 - direction]);
