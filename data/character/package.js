@@ -1,53 +1,44 @@
 /* global $ */
 define([
-   '../var/collection' 
-], function(Collection) {
+   '../var/collection',
+   '../var/helper' 
+], function(Collection, helper) {
     'use strict';
     var Cls_package = function() {};
     Cls_package.prototype = new Collection();
     $.extend(Cls_package.prototype, {
-        itemMap: {},
-        RemoveItem: function(item) {
-            item = this.GetItem(item);
-            if (item == undefined) {
-                return false;
-            } else {
-                item = item[0].id;
-            }
-            var targetIdx = 0;
+        RemoveItem: function(pid) {
             for (var i = 0; i < this.length; i++) {
-                if (this[i][0].id == item) {
-                    targetIdx = i;
-                    break;
+                var t = this[i];
+                if (t.packageId == pid) {
+                    this.splice(i, 1);
+                    return;
                 }
             }
-            this.splice(targetIdx, 1);
-            delete this.itemMap[item];
-            return true;
         },
-        AddItem: function(item, count) {
-            count = count || 1;
-            var i = this.GetItem(item); 
-            if(i != undefined) {
-                i[1] += count;
-            } else {
-                var p = [
-                    item,
-                    count
-                ];
-                this.itemMap[item.id] = p;
-                this.push(p);
+        AddItem: function(item) {
+            for (var i = 0; i < this.length; i++) {
+                var t = this[i];
+                if (t.id == item.id && t.max > t.count) {
+                    if(t.max >= t.count + item.count) {
+                        t.count += item.count;
+                        return;
+                    } else {
+                        item.count -= t.max - t.count;
+                        t.count = t.max;
+                    }
+                }
             }
+            item.packageId = helper.uuid();
+            this.push(item);
         },
-        GetItem: function(item) {
-            if(typeof item == 'object') {
-                item = item.id;
+        GetItem: function(pid) {
+            for (var i = 0; i < this.length; i++) {
+                var t = this[i];
+                if (t.packageId == pid) {
+                    return t;
+                }
             }
-            return this.itemMap[item];
-        },
-        ItemCount: function(item) {
-            var i = this.GetItem(item);
-            return i[1];
         },
         money: 0,
         diary: null

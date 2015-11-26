@@ -1,4 +1,12 @@
 /******************
+* global
+*******************/
+.-fl
+{
+    float: left;
+}
+
+/******************
 * process
 *******************/
 .process
@@ -118,24 +126,6 @@
     bottom: 0;
     top: auto;
 }
-/*
-
-.character .process-bar .text
-{
-    position: absolute;
-    width: 100%;
-    line-height: 25px;
-    text-align: center;
-}
-.character .process-bar .bar
-{
-    position: absolute;
-    height: 100%;
-    width: 0%;
-    left: 0;
-    top: 0;
-}
-*/
 .character .exp.process-bar .bar
 {
     background: lightgreen;

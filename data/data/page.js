@@ -169,6 +169,25 @@ define({
             } else {
                 node.dialog('close');
             }
+        },
+        openPackage: function() {
+            var nodeId = "__PackagePanel__";
+            var node = $("#" + nodeId);
+            if (node.length == 0) {
+                var character = world.characters[0];
+                node = $('<div id="' + nodeId + '" title="背包"></div>');
+                node.dialog({
+                    open: function() {
+                        worldUI.changePage('packagePanel', function(a) {
+                        }, node);
+                    },
+                    close: function() {
+                        node.remove();
+                    }
+                });
+            } else {
+                node.dialog('close');
+            }
         }
     }
 });

@@ -17,6 +17,11 @@ define({
     getRandom: function(min, max) {
         return Math.random() * (max - min) + min;
     },
+    uuid: function(key) {
+        key = key || parseInt(this.getRandom(1, 100000));
+        var d = new Date();
+        return d.getTime() + "_" + key + "_" + parseInt(this.getRandom(1, 100000));
+    },
     onStdout: function() {},
     stdout: function(key, data) {
         this.onStdout(key, data);
